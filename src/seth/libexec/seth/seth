@@ -208,6 +208,14 @@ if [[ $SETH_CHAIN ]]; then
         ~/{.local/share,Library/Application\ Support}/io.parity.ethereum/keys/"$SETH_CHAIN"/
       )
       ;;
+      matic)
+      eth_rpc_url=https://rpc-mumbai.matic.today
+      export ETHERSCAN_API_URL=https://mumbai-explorer.matic.today/api
+      keystores=(
+        ~/{.ethereum,Library/Ethereum}/matic/keystore/
+        # ~/{.local/share,Library/Application\ Support}/io.parity.ethereum/keys/"$SETH_CHAIN"/
+      )
+      ;;
     *)
       echo >&2 "${0##*/}: error: unknown chain: \\'$SETH_CHAIN'"
       exit 1
