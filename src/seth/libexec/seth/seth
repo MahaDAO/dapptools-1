@@ -185,6 +185,8 @@ done
 
 keystores=()
 
+# echo $SETH_CHAIN
+
 if [[ $SETH_CHAIN ]]; then
   export ETH_LOGS_API=${SETH_LOGS_API:-etherscan}
 
@@ -209,10 +211,18 @@ if [[ $SETH_CHAIN ]]; then
       )
       ;;
       matic)
+      eth_rpc_url=https://rpc-mainnet.matic.network
+      export ETHERSCAN_API_URL=https://explorer.matic.network/api
+      keystores=(
+        ~/{.ethereum,Library/Ethereum}/matic/keystore/
+        # ~/{.local/share,Library/Application\ Support}/io.parity.ethereum/keys/"$SETH_CHAIN"/
+      )
+      ;;
+      mumbai)
       eth_rpc_url=https://rpc-mumbai.matic.today
       export ETHERSCAN_API_URL=https://mumbai-explorer.matic.today/api
       keystores=(
-        ~/{.ethereum,Library/Ethereum}/matic/keystore/
+        ~/{.ethereum,Library/Ethereum}/mumbai/keystore/
         # ~/{.local/share,Library/Application\ Support}/io.parity.ethereum/keys/"$SETH_CHAIN"/
       )
       ;;
